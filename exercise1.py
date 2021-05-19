@@ -3,18 +3,6 @@ import numpy
 import numpy as np
 
 
-def test():
-    test_path = "C:/Users/Jacob/Desktop/Semestr 6/Cyfrowe przetwarzanie sygnałów i obrazów/Lab_2/test.txt"
-
-    test = numpy.loadtxt(test_path, dtype=float, delimiter=" ")
-    print(test)
-
-    b = np.zeros((3, 2))
-    b[:, 0] = test[:, 0]
-
-    print(b)
-
-
 def print_menu():
     print("----------------------------------\n"
           "---------------Menu---------------\n"

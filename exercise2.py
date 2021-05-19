@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
-import numpy
 import numpy as np
+
 
 def print_menu():
     print("----------------------------------\n"
@@ -12,7 +12,6 @@ def print_menu():
           "[3] Wygeneruj ciąg próbek mieszaniny dwóch fal sinusoidalnych\n"
           "[4] Różne czasów trwania sygnałów\n"
           "[5] Odwrotne transformaty Fouriera ciągów\n")
-
 
 
 def menu():
@@ -103,17 +102,15 @@ def two_sinus_wave():
         y_50 + y_60)  # jednowymiarowa Dyskretna Transformata Fouriera dla rzeczywistych sygnałów wejściowych
 
     plt.figure(figsize=(20, 10))
-
-
     plt.plot(x, y_50 + y_60)
     plot_description('Nr próbki', 'Wartość', 'Kombinacja liniowa fal')
     plt.show()
+
 
     plt.figure(figsize=(20, 10))
     plt.plot(frequency, np.abs(discrete_fourier_transform_two_sin) / (length / 2))
     plot_description('Częstotliwość', 'Wartość', 'Widmo sumy fal sinusoidalnych')
     plt.xlim(0, 2000)
-
     plt.show()
 
 

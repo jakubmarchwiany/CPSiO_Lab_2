@@ -32,7 +32,9 @@ def menu():
         elif choose == 2:
             exercise2.menu()
         elif choose == 3:
-            file_path = exercise1.read_ekg_noise()
+            exercise3.menu()
+        elif choose == 4:
+            exercise4.menu()
         else:
             print("nie ma takiego wyboru")
 
@@ -42,6 +44,7 @@ if __name__ == '__main__':
     #
     # # file_path = exercise1.test()
     # # file_path = exercise1.read_ekg1()
-    exercise4.main()
+    # exercise4.main()
+    menu()
 
 

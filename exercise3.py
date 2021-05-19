@@ -1,8 +1,31 @@
 import pandas as pd
-
 import matplotlib.pyplot as plt
-import numpy
 import numpy as np
+
+
+def print_menu():
+    print("----------------------------------\n"
+          "---------------Menu---------------\n"
+          "----------------------------------\n"
+          "[0] Wróć do menu głównego\n"
+          "[1] Wykres sygnału ekg100.txt wyznaczenie dyskretnej tranformaty Fouriera i widmo amplitudowe\n"
+          "[2] Wyznaczenie odwrotnej dyskretnej tranformaty Fouriera\n")
+
+
+def menu():
+    while True:
+        print_menu()
+        choose = float(input("Twój wybór : "))
+
+        if choose == 0:
+            break
+        elif choose == 1:
+            generate_discrete_Fourier_transform()
+        elif choose == 2:
+            inverse_discrete_transform()
+        else:
+            print("nie ma takiego wyboru")
+
 
 
 def generate_discrete_Fourier_transform():

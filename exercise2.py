@@ -178,12 +178,10 @@ def generate_discrete_Fourier_transform_2():
     spectrum = np.zeros(32769, dtype=complex)
     spectrum[68] = -32768j
 
-    plot = np.real(np.fft.irfft(
-        spectrum))  # odwrotna jednowymiarowa Dyskretna Transformata Fouriera dla rzeczywistego sygnału wejściowego
+    # Dyskretna Transformata Fouriera sygnału wejściowego
+    plot = np.real(np.fft.irfft(spectrum))
 
-    plt.figure(figsize=(30, 10))
-
-    plt.subplot(1, 1, 1)  # wyrysowanie wykresu
+    plt.figure(figsize=(20, 10))
     plt.plot(plot[:6000])
     plot_description('Nr próbki', 'Wartość', 'Fala sinusoidalna wygenerowana metodą IFFT')
 

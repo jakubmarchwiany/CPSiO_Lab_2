@@ -41,7 +41,6 @@ def generate_discrete_Fourier_transform():
     ekg100 = ekg100.set_index('Czas')
 
     plt.figure(figsize=(20, 10))
-    plt.subplot(1, 1, 1)  # wyrysowanie wykresu
     plt.plot(ekg100)
     plot_description('Czas[s]','Wartość','ekg100.txt')
 
@@ -50,10 +49,8 @@ def generate_discrete_Fourier_transform():
     y = ekg100['1'] - ekg100['1'].mean()
     # dyskretna transformata Fouriera
     y = np.abs(np.fft.fft(y)) / (ekg100.size // 2)
-    mask = x > 0
 
     plt.figure(figsize=(20, 10))
-
     plt.plot(x, y)
     plt.xlim([0, sampling_frequency_ekg100 / 2])
     plt.ylim([0, 0.015])
@@ -62,8 +59,7 @@ def generate_discrete_Fourier_transform():
 
 def inverse_discrete_transform():
     # Wczytanie sygnału ekg100
-    ekg100 = pd.read_csv('C:/Users/Jacob/Desktop/Semestr 6/Cyfrowe przetwarzanie sygnałów i obrazów/Lab_2/ekg100.txt',
-                         names=['1'])
+    ekg100 = pd.read_csv('C:/Users/Jacob/Desktop/Semestr 6/Cyfrowe przetwarzanie sygnałów i obrazów/Lab_2/ekg100.txt',names=['1'])
     # ustawienie częstotliwości próbkowania
     sampling_frequency_ekg100 = 360
 
@@ -73,7 +69,6 @@ def inverse_discrete_transform():
     ekg100 = ekg100.set_index('Czas')
 
     plt.figure(figsize=(20, 10))
-    plt.subplot(1, 1, 1)  # wyrysowanie wykresu
     plt.plot(ekg100)
     plot_description('Czas[s]', 'Wartość', 'ekg100.txt')
 
@@ -82,9 +77,9 @@ def inverse_discrete_transform():
     y = ekg100['1'] - ekg100['1'].mean()
     # dyskretna transformata Fouriera
     y = np.abs(np.fft.fft(y)) / (ekg100.size // 2)
-    mask = x > 0
 
-    inverse = np.real(np.fft.ifft(y))  # jednowymiarowa odwrotna Dyskretna Transformata Fouriera
+    # odwrotna Dyskretna Transformata Fouriera
+    inverse = np.real(np.fft.ifft(y))
 
     plt.figure(figsize=(20, 10))
     plt.plot(ekg100['1'] - inverse)

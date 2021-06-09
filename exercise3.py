@@ -20,15 +20,16 @@ def menu():
         if choose == 0:
             break
         elif choose == 1:
-            generate_discrete_Fourier_transform()
+            exercise_1_2()
         elif choose == 2:
-            inverse_discrete_transform()
+            exercise_3()
         else:
             print("nie ma takiego wyboru")
 
 
-
-def generate_discrete_Fourier_transform():
+# Wyznaczyć jego dyskretną transformatę Fouriera i przedstawić widmo amplitudowe sygnału
+# w funkcji częstotliwości w zakresie [0, fs/2], gdzie fs oznacza częstotliwość próbkowania.
+def exercise_1_2():
 
     # Wczytanie sygnału ekg100
     ekg100 = pd.read_csv('C:/Users/Jacob/Desktop/Semestr 6/Cyfrowe przetwarzanie sygnałów i obrazów/Lab_2/ekg100.txt', names=['1'])
@@ -56,8 +57,10 @@ def generate_discrete_Fourier_transform():
     plt.ylim([0, 0.015])
     plot_description('Częstotliwość [Hz]','Wartość','Widmo amplitudowe sygnału ekg100')
 
-
-def inverse_discrete_transform():
+# Wyznaczyć odwrotną dyskretną transformatę Fouriera ciągu wyznaczonego w
+# punkcie 2 i porównać otrzymany ciąg próbek z pierwotnym sygnałem ecg100
+# (można wyznaczyć różnicę sygnałów).
+def exercise_3():
     # Wczytanie sygnału ekg100
     ekg100 = pd.read_csv('C:/Users/Jacob/Desktop/Semestr 6/Cyfrowe przetwarzanie sygnałów i obrazów/Lab_2/ekg100.txt',names=['1'])
     # ustawienie częstotliwości próbkowania

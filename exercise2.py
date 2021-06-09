@@ -22,21 +22,22 @@ def menu():
         if choose == 0:
             break
         elif choose == 1:
-            generate_sine_wave()
+            exercise_1()
         elif choose == 2:
-            generate_discrete_Fourier_transform()
+            exercise_2()
         elif choose == 3:
-            two_sinus_wave()
+            exercise_3()
         elif choose == 4:
-            two_sinus_wave_2()
+            exercise_4()
         elif choose == 5:
-            generate_discrete_Fourier_transform_2()
+            exercise_5()
         else:
             print("nie ma takiego wyboru")
 
 
-
-def generate_sine_wave():
+# Wygeneruj ciąg próbek odpowiadający fali sinusoidalnej
+# o częstotliwości 50 Hz i długości 65536.
+def exercise_1():
     # długości sygnału
     length = 65536
     # częstotliwości
@@ -54,8 +55,10 @@ def generate_sine_wave():
     plot_description('Numer próbki', '', 'Fala sinusoidalna')
     plt.show()
 
-
-def generate_discrete_Fourier_transform():
+# Wyznacz dyskretną transformatę Fouriera tego sygnału i przedstaw jego widmo
+# amplitudowe na wykresie w zakresie częstotliwości [0, fs/2], gdzie fs oznacza
+# częstotliwość próbkowania
+def exercise_2():
     # długości sygnału
     length = 65536
     # częstotliwości
@@ -80,8 +83,9 @@ def generate_discrete_Fourier_transform():
 
     plt.show()
 
-
-def two_sinus_wave():
+# Wygeneruj ciąg próbek mieszaniny dwóch fal sinusoidalnych (tzn. ich kombinacji
+# liniowej) o częstotliwościach 50 i 60 Hz. Wykonaj zadanie z punktu 2 dla tego sygnału.
+def exercise_3():
     # długości sygnału
     length = 65536
     # ustawienie częstotliwości 50 Hz
@@ -98,8 +102,8 @@ def two_sinus_wave():
     # wartości sinusa dla danego x częstotliwości 60 Hz
     y_60 = np.sin(np.pi / 240000 * x * frequency_60)
 
-    discrete_fourier_transform_two_sin = np.fft.rfft(
-        y_50 + y_60)  # jednowymiarowa Dyskretna Transformata Fouriera dla rzeczywistych sygnałów wejściowych
+    # Dyskretna Transformata Fouriera dla sygnałów wejściowych
+    discrete_fourier_transform_two_sin = np.fft.rfft( y_50 + y_60)
 
     plt.figure(figsize=(20, 10))
     plt.plot(x, y_50 + y_60)
@@ -113,8 +117,9 @@ def two_sinus_wave():
     plt.xlim(0, 2000)
     plt.show()
 
-
-def two_sinus_wave_2():
+# Powtórz eksperymenty dla różnych czasów trwania sygnałów, tzn. dla różnych
+# częstotliwości próbkowania.
+def exercise_4():
     # długości sygnału
     length = 65536
     # ustawienie częstotliwości 50 Hz
@@ -174,7 +179,9 @@ def plot_description(xlabel, ylabel, title):
     plt.ylabel(ylabel)
 
 
-def generate_discrete_Fourier_transform_2():
+# Wyznacz odwrotne transformaty Fouriera ciągów wyznaczonych w zadaniu 2
+# i porównaj z ciągami oryginalnymi.
+def exercise_5():
     spectrum = np.zeros(32769, dtype=complex)
     spectrum[68] = -32768j
 

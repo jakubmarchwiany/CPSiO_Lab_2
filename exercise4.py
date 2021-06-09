@@ -47,7 +47,7 @@ def menu():
         if choose == 0:
             break
         elif choose == 1:
-            plot_ekg_noise_and_signal_amplitude_characteristics()
+            exercise_1()
         elif choose == 2:
             filter_butterwortha()
         elif choose == 3:
@@ -55,12 +55,13 @@ def menu():
         elif choose == 4:
             plot_spectrum_before_after()
         elif choose == 5:
-            high_pass_filter_butterwortha()
+            exercise_3()
         else:
             print("nie ma takiego wyboru")
 
-
-def plot_ekg_noise_and_signal_amplitude_characteristics():
+# Wczytaj sygnał ekg noise.txt i zauważ zakłócenia nałożone na sygnał. Wykreślić
+# częstotliwościową charakterystykę amplitudową sygnału.
+def exercise_1():
     global ekg_noise, sampling_frequency_ekg_noise
 
     ekg_noise = ekg_noise.set_index('Czas')  # ustawienie czasu jako indexu tabeli
@@ -81,16 +82,17 @@ def plot_ekg_noise_and_signal_amplitude_characteristics():
     plot_description('Częstotliwość [Hz]', 'Wartość', 'Częstotliwościowa charakterystyka amplitudowa sygnału')
     plt.show()
 
-
+# Zbadaj filtr dolnoprzepustowy o częstotliwości granicznej 60 Hz w celu redukcji
+# zakłóceń pochodzących z sieci zasilającej.
 def filter_butterwortha():
     global ekg_noise
     global sampling_frequency_ekg_noise
     global cutoff_frequency
-
+    # filtr Butterwortha
     butterworth = sig.butter(8, cutoff_frequency, 'low', fs=sampling_frequency_ekg_noise,
-                             output='sos')  # filtr Butterwortha
-    filtered_sig = sig.sosfilt(butterworth,
-                               ekg_noise['Wartość amplitudy'])  # przefiltrowanie sekwencji danych używając filtra IIR
+                             output='sos')
+    # przefiltrowanie sekwencji danych używając filtra IIR
+    filtered_sig = sig.sosfilt(butterworth, ekg_noise['Wartość amplitudy'])
 
     plt.figure(figsize=(20, 10))
 
@@ -103,7 +105,9 @@ def filter_butterwortha():
     plot_description('Czas[s]', 'Wartość', 'Różnica miedzy sygnałem przed i po filtracji')
     plt.show()
 
-
+ # Wyznacz parametry filtra, wykreśl
+# jego charakterystykę (zależność tłumienia od częstotliwości), przebieg sygnału
+# po filtracji oraz jego widmo.
 def plot_characteristics():
     global sampling_frequency_ekg_noise
     global cutoff_frequency
@@ -122,6 +126,8 @@ def plot_characteristics():
     plt.show()
 
 
+# Można też wyznaczyć różnicę między sygnałem
+# przed i po filtracji i widmo tej różnicy.
 def plot_spectrum_before_after():
     global ekg_noise
     global sampling_frequency_ekg_noise
@@ -160,8 +166,10 @@ def plot_spectrum_before_after():
     plot_description('Częstotliwość [Hz]', 'Amplituda [dB]', 'Widmo różnicy miedzy sygnałem przed i po filtracji')
     plt.show()
 
-
-def high_pass_filter_butterwortha():
+# Zastosuj następnie, do sygnału otrzymanego w punkcie 2, filtr górnoprzepustowy
+# o częstotliwości granicznej 5 Hz w celu eliminacji pływania linii izoelektrycznej.
+# Sporządź wykresy sygnałów jak w punkcie 2.
+def exercise_3():
     global ekg_noise
     global sampling_frequency_ekg_noise
     global cutoff_frequency
